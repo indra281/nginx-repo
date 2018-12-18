@@ -1,0 +1,7 @@
+upstreams:
+<% @asg_configs.each do |asg_config| -%>
+  - name: <%= asg_config['upstream'] %>
+    autoscaling_group: <%= asg_config['asg'] %>
+    port: 80
+    kind: http
+<% end %>

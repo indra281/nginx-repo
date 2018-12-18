@@ -1,0 +1,9 @@
+# Include the recommended configuration
+Include /etc/nginx/modsec/modsecurity.conf
+Include /etc/nginx/modsec/crs-setup.conf
+Include /etc/nginx/modsec/rules/*.conf
+
+# Rigzone WAF Rules
+<% @config['waf_rules'].each do |waf_rule| -%>
+<%= waf_rule['rule'] %>
+<% end %>

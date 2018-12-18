@@ -1,0 +1,5 @@
+match <%= @healthcheck['healthcheck_name'] %> {
+  # Used for health check
+  status <%= @healthcheck['status_code'] %>;
+  body ~ "<%= @healthcheck['text_to_verify'] %>";
+}

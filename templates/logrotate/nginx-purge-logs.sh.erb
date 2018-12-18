@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Release Logs from NGINX Process
+cat /var/run/nginx.pid | xargs kill -USR1
+sleep 1
+
+# Remove NGINX Access Logs
+if [ `ls -1 /var/log/nginx/*access.log-* 2>/dev/null | wc -l ` -gt 0 ];
+then
+    rm -f /var/log/nginx/*access.log-*
+fi
+
+# Remove NGINX Error Logs
+if [ `ls -1 /var/log/nginx/*error.log-* 2>/dev/null | wc -l ` -gt 0 ];
+then
+    rm -f /var/log/nginx/*error.log-*
+fi
+
+# Remove Amplify Agent Logs
+if [ `ls -1 /var/log/amplify-agent/agent.log.* 2>/dev/null | wc -l ` -gt 0 ];
+then
+    rm -f /var/log/amplify-agent/agent.log.*
+fi
+
+# Remove NGINX AWS Sync Logs
+if [ `ls -1 /var/log/nginx-aws-sync/nginx-aws-sync.log.* 2>/dev/null | wc -l ` -gt 0 ];
+then
+    rm -f /var/log/nginx-aws-sync/nginx-aws-sync.log.*
+fi
